@@ -1,0 +1,72 @@
+﻿<Window x:Class="HBD.WPF.Shell.WorkspaceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://www.codeplex.com/prism"
+        xmlns:controls1="clr-namespace:HBD.WPF.Shell.Controls;assembly=HBD.WPF.Shell.Controls"
+        xmlns:shell="clr-namespace:HBD.WPF.Shell"
+        mc:Ignorable="d"
+        Height="{Binding ShellOptionService.Height,Mode=TwoWay}"
+        Width="{Binding ShellOptionService.Width,Mode=TwoWay}"
+        Left="{Binding ShellOptionService.Left,Mode=TwoWay}"
+        Top="{Binding ShellOptionService.Top,Mode=TwoWay}"
+        Topmost="{Binding ShellOptionService.Topmost,Mode=TwoWay}"
+        WindowState="{Binding ShellOptionService.WindowState,Mode=TwoWay}"
+        WindowStyle="{Binding ShellOptionService.WindowStyle,Mode=TwoWay}"
+        d:DataContext="{d:DesignInstance shell:WorkspaceViewModel}"
+        Icon="{DynamicResource MainWindowIcon}"
+        prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!--Left-->
+            <ColumnDefinition Width="Auto" />
+            <!--Main-->
+            <ColumnDefinition Width="*" />
+            <!--Right-->
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <!--Menu-->
+            <RowDefinition Height="Auto" />
+            <!--Title-->
+            <RowDefinition Height="Auto" />
+            <!--Main-->
+            <RowDefinition Height="*" />
+            <!--Status-->
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--Menu-->
+        <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="Transparent"
+                        x:Name="MenuRegion" prism:RegionManager.RegionName="MenuRegion"
+                        Margin="0" Padding="0" />
+        <!--Title-->
+        <ContentControl Grid.Row="1" Grid.Column="1" Background="Transparent"
+                        x:Name="TitleRegion" prism:RegionManager.RegionName="TitleRegion"
+                        Margin="0" Padding="0" />
+        <!--Left-->
+        <controls1:LeftRightContentControl Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Background="Transparent"
+                                           x:Name="LeftRegion"
+                                           prism:RegionManager.RegionName="LeftRegion"
+                                           Margin="0" Padding="0" />
+        <!--Main-->
+        <ContentControl Grid.Row="2" Grid.Column="1" Background="Transparent"
+                        x:Name="MainRegion" prism:RegionManager.RegionName="MainRegion"
+                        Margin="0" Padding="0" />
+        <!--Right-->
+        <controls1:LeftRightContentControl Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Background="Transparent"
+                                           x:Name="RightRegion"
+                                           prism:RegionManager.RegionName="RightRegion"
+                                           Margin="0" Padding="0" />
+        <!--Status-->
+        <ContentControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Background="Transparent"
+                        x:Name="StatusRegion"
+                        prism:RegionManager.RegionName="StatusRegion"
+                        Margin="0" Padding="0" />
+
+        <controls1:BusyControl Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Grid.Column="0"
+                               BusyMessage="{Binding BusyMessage}"
+                               IsEnabled="{Binding IsBusy}" />
+    </Grid>
+</Window>

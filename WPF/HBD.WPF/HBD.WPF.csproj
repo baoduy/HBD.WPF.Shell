@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{92BD69A7-7217-4C59-BA84-41D7016903C0}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HBD.WPF</RootNamespace>
+    <AssemblyName>HBD.WPF</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="HBD.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HBD.Framework.1.0.5\lib\net46\HBD.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="HBD.Mef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HBD.Mef.1.0.4-beta2\lib\net461\HBD.Mef.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicrosoftExpressionInteractions.3.0.40218.0\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.2.0\lib\net45\Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.2.0\lib\net45\Prism.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xcalibur.NativeMethods, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xcalibur.NativeMethods.1.0.0\lib\Xcalibur.NativeMethods.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xcalibur.NativeMethods.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xcalibur.NativeMethods.1.0.0\lib\Xcalibur.NativeMethods.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AttacheControls\DynamicColorProvider.cs" />
+    <Compile Include="AttacheControls\PropertyChangedAnimation.cs" />
+    <Compile Include="AttacheControls\VisibilityAnimation.cs" />
+    <Compile Include="AttacheControls\WindowCustomizer.cs" />
+    <Compile Include="Common\WindowHelper.cs" />
+    <Compile Include="BackgroundThreadExtensions.cs" />
+    <Compile Include="Commands\RoleActionCommand.cs" />
+    <Compile Include="Controls\HeaderedContentGridControl.cs" />
+    <Compile Include="Controls\MenuTitleItem.cs" />
+    <Compile Include="Controls\ModelWindow.cs" />
+    <Compile Include="Controls\NotificationItem.cs" />
+    <Compile Include="Controls\TitledContentControl.xaml.cs">
+      <DependentUpon>TitledContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolBarItem.xaml.cs">
+      <DependentUpon>ToolBarItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\AdjustValueConverter.cs" />
+    <Compile Include="Converters\BooleanToHiddenConverter.cs" />
+    <Compile Include="Converters\IsTypeOfConverter.cs" />
+    <Compile Include="Converters\NotBooleanToCollapsedConverter.cs" />
+    <Compile Include="Converters\BooleanToCollapsedConverter.cs" />
+    <Compile Include="Converters\NullToCollapsedConverter.cs" />
+    <Compile Include="Converters\ObjectToImageConvertor.cs" />
+    <Compile Include="Controls\FolderDialog.cs" />
+    <Compile Include="Converters\PermissionValidationVisibilityConverter.cs" />
+    <Compile Include="Common\NativeMethods.cs" />
+    <Compile Include="Shell\Core\DialogClosingResult.cs" />
+    <Compile Include="Shell\Core\IDialogClosingResult.cs" />
+    <Compile Include="Shell\Core\IDialogOption.cs" />
+    <Compile Include="Shell\Core\IDialogResult.cs" />
+    <Compile Include="Shell\Core\IMessageBoxOption.cs" />
+    <Compile Include="Shell\Configuration\IShellConfigManager.cs" />
+    <Compile Include="Shell\Configuration\WpfShellConfig.cs" />
+    <Compile Include="Shell\Core\INotificationInfo.cs" />
+    <Compile Include="Core\INotificationItem.cs" />
+    <Compile Include="Core\RandomColorProvider.cs" />
+    <Compile Include="EventArguments\NotificationEventArgs.cs" />
+    <Compile Include="MonitorExtentions.cs" />
+    <Compile Include="RegionManagerExtentions.cs" />
+    <Compile Include="Shell\Core\INotificationInfoCollection.cs" />
+    <Compile Include="Shell\Core\RegionInfoItem.cs" />
+    <Compile Include="Shell\Core\StatusInfo.cs" />
+    <Compile Include="Shell\NavigationExtensions.cs" />
+    <Compile Include="Shell\Navigation\DefaultToolBarItem.cs" />
+    <Compile Include="Shell\Navigation\INavigationParameterExecuter.cs" />
+    <Compile Include="Shell\Navigation\IToolBarSet.cs" />
+    <Compile Include="Shell\Navigation\NavigationCommandParameter.cs" />
+    <Compile Include="Shell\Navigation\NavigationParameterExecuterBase.cs" />
+    <Compile Include="Shell\Navigation\NavigationRegionParameter.cs" />
+    <Compile Include="Shell\Regions\IShellRegionNavigationService.cs" />
+    <Compile Include="Shell\Regions\ScopedRegionNavigationContentLoader.cs" />
+    <Compile Include="Shell\Core\NotificationInfoCollection.cs" />
+    <Compile Include="Shell\Core\GroupNotificationCollection.cs" />
+    <Compile Include="Shell\Core\GroupNotificationInfo.cs" />
+    <Compile Include="Shell\Regions\TabActiveRegion.cs" />
+    <Compile Include="Shell\Regions\TabControlRegionAdapter.cs" />
+    <Compile Include="Shell\Services\IMessageBoxService.cs" />
+    <Compile Include="Shell\Services\IShellOptionService.cs" />
+    <Compile Include="Shell\Services\IShellStatusService.cs" />
+    <Compile Include="Shell\Core\IBusyIndicator.cs" />
+    <Compile Include="Shell\Services\MessageBoxServiceBase.cs" />
+    <Compile Include="Shell\Theme\IShellTheme.cs" />
+    <Compile Include="Shell\ViewModels\IDialogAware.cs" />
+    <Compile Include="Shell\ViewModels\IRegionInfo.cs" />
+    <Compile Include="Shell\ViewModels\IShellMenuViewModel.cs" />
+    <Compile Include="Shell\ViewModels\IScopeRegion.cs" />
+    <Compile Include="Shell\ViewModels\IShellNotificationCenterViewModel.cs" />
+    <Compile Include="Shell\ViewModels\IShellMainViewModel.cs" />
+    <Compile Include="Shell\ViewModels\IShellViewModel.cs" />
+    <Compile Include="Shell\ViewModels\IShellTitleViewModel.cs" />
+    <Compile Include="Shell\ViewModels\IShellStatusViewModel.cs" />
+    <Compile Include="Shell\ViewModels\IViewTitle.cs" />
+    <Compile Include="Shell\ViewModels\IViewModel.cs" />
+    <Compile Include="Commands\CancelEventCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Common\TaskCreater.cs" />
+    <Compile Include="Core\IDialogWindow.cs" />
+    <Compile Include="Converters\NotBooleanToHiddenConverter.cs" />
+    <Compile Include="Converters\BrushToColorConverter.cs" />
+    <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Converters\StringNullOrEmptyConverter.cs" />
+    <Compile Include="Converters\IsTopMenuLevelConverter.cs" />
+    <Compile Include="ResourceDictionnaryExtention.cs" />
+    <Compile Include="Shell\Core\IconsType.cs" />
+    <Compile Include="Shell\Views\IShellMessageBoxView.cs" />
+    <Compile Include="Shell\Views\IShellNotificationCenterView.cs" />
+    <Compile Include="Shell\Views\IShellTitleView.cs" />
+    <Compile Include="Windows\DialogWindow.cs" />
+    <Compile Include="Controls\TabControl.cs" />
+    <Compile Include="Controls\ToolBar.cs" />
+    <Compile Include="ControlTemplates\ConditionDataTemplate.cs" />
+    <Compile Include="ControlTemplates\ConditionDataTemplateSelector.cs" />
+    <Compile Include="ControlTemplates\TemplateCollection.cs" />
+    <Compile Include="Converters\IsCollectionHasItemConverter.cs" />
+    <Compile Include="Converters\CollectionHasItemToVisibilityConverter.cs" />
+    <Compile Include="Converters\IsEnabledForegroundConverter.cs" />
+    <Compile Include="Converters\IsNotNullConverter.cs" />
+    <Compile Include="Converters\NotBooleanConverter.cs" />
+    <Compile Include="Converters\NullToHiddenConverter.cs" />
+    <Compile Include="Converters\OfTypeConverter.cs" />
+    <Compile Include="Converters\OpositeValueConverter.cs" />
+    <Compile Include="DialogButtonsExtensions.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="MenuExtensions.cs" />
+    <Compile Include="Shell\Core\IToolbarInfo.cs" />
+    <Compile Include="Shell\Modularity\ModuleBase.cs" />
+    <Compile Include="Shell\Navigation\MenuTitle.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\DialogButtons.cs" />
+    <Compile Include="Shell\Core\DialogCommand.cs" />
+    <Compile Include="Shell\Core\DialogCommandCollection.cs" />
+    <Compile Include="Shell\Core\DialogOption.cs" />
+    <Compile Include="Shell\Core\DialogResult.cs" />
+    <Compile Include="Shell\Services\DialogServiceBase.cs" />
+    <Compile Include="Shell\Services\IDialogService.cs" />
+    <Compile Include="Shell\Services\INotificationService.cs" />
+    <Compile Include="Shell\ViewModels\ViewModelBase.cs" />
+    <Compile Include="Core\INotificationWindow.cs" />
+    <Compile Include="Windows\NotificationWindow.cs" />
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\TitledContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ToolBarItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ControlStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

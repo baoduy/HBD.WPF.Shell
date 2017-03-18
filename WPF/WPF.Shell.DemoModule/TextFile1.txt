@@ -1,0 +1,2 @@
+﻿if not exist "$(SolutionDir)..\Published\Shell\Modules\$(ProjectName)" mkdir "$(SolutionDir)..\Published\Shell\Modules\$(ProjectName)" 
+xcopy "$(TargetDir)*.*" "$(SolutionDir)..\Published\Shell\Modules\$(ProjectName)" /s /y /r

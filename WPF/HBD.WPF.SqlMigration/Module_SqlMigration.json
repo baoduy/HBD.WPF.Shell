@@ -1,0 +1,7 @@
+﻿{
+  "Name": "HBD.WPF.SqlMigration.Module",
+  "Description": "The Sql Migration Script Generation Module",
+  "IsEnabled": true, //or false
+  //The list of assemblies that you want to be exposed to the EMF.
+  "AssemplyFiles": [ "HBD.WPF.SqlMigration.Module.dll" ]
+}

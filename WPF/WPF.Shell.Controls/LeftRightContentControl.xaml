@@ -1,0 +1,85 @@
+﻿<ContentControl x:Class="HBD.WPF.Shell.Controls.LeftRightContentControl"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:controls="clr-namespace:HBD.WPF.Controls;assembly=HBD.WPF"
+                mc:Ignorable="d"
+                d:DesignHeight="300" d:DesignWidth="300"
+                Name="Root">
+    <ContentControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HBD.WPF.Shell.Controls;component/Themes/Converters.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentControl.Resources>
+    <ContentControl.ContentTemplate>
+        <DataTemplate DataType="FrameworkElement">
+            <Border BorderBrush="WhiteSmoke" BorderThickness="1">
+                <controls:TitledContentControl HeaderHeight="{DynamicResource NotifyCenterTitleHeight}"
+                                               HeaderBackground="{DynamicResource LightBlueBrush}"
+                                               DataContext="{Binding Content.DataContext,ElementName=Root}"
+                                               Content="{TemplateBinding Content}"
+                                               Title="{Binding ViewTitle}"
+                                               CloseCommand="{Binding CloseCommand}"
+                                               Foreground="White">
+                    <controls:TitledContentControl.Header>
+                        <ItemsControl DataContext="{Binding Content.DataContext,ElementName=Root}"
+                                      ItemsSource="{Binding ToolbarItems}" />
+                    </controls:TitledContentControl.Header>
+                </controls:TitledContentControl>
+            </Border>
+        </DataTemplate>
+    </ContentControl.ContentTemplate>
+
+    <ContentControl.Style>
+        <Style TargetType="ContentControl">
+            <Setter Property="Width" Value="0" />
+
+            <Style.Triggers>
+                <DataTrigger
+                    Binding="{Binding Content,RelativeSource={RelativeSource Mode=Self},Converter={StaticResource IsNotNull}}"
+                    Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard Name="OpenSt">
+                            <Storyboard>
+                                <DoubleAnimation From="0" To="250" Storyboard.TargetProperty="Width" Duration="0:0:0.2" />
+                                <DoubleAnimation From="0" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+
+                    <DataTrigger.ExitActions>
+                        <!--Fixing the issue that Trigger is not firing again-->
+                        <RemoveStoryboard BeginStoryboardName="OpenSt" />
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+
+                <!--Deactivated Trigger-->
+                <DataTrigger
+                    Binding="{Binding Content,RelativeSource={RelativeSource Mode=Self},Converter={StaticResource IsNotNull}}"
+                    Value="False">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard Name="CloseSt">
+                            <Storyboard>
+                                <DoubleAnimation To="0" Storyboard.TargetProperty="Width" Duration="0:0:0.2" />
+                                <DoubleAnimation From="1" To="0" Storyboard.TargetProperty="Opacity" Duration="0:0:0.3" />
+                                <ObjectAnimationUsingKeyFrames BeginTime="0:0:0.5"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <!--Fixing the issue that Trigger is not firing again-->
+                        <RemoveStoryboard BeginStoryboardName="CloseSt" />
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </ContentControl.Style>
+</ContentControl>

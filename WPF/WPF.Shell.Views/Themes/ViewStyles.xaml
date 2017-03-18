@@ -1,0 +1,223 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:HBD.WPF.Shell.Controls;assembly=HBD.WPF.Shell.Controls"
+                    xmlns:controls1="clr-namespace:HBD.WPF.Controls;assembly=HBD.WPF"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:views="clr-namespace:HBD.WPF.Shell.UI.Views"
+                    xmlns:nv="clr-namespace:HBD.WPF.Shell.Navigation;assembly=HBD.WPF"
+                    xmlns:cv="clr-namespace:HBD.WPF.Converters;assembly=HBD.WPF"
+                    xmlns:navigation1="clr-namespace:HBD.Mef.Shell.Navigation;assembly=HBD.Mef"
+                    xmlns:core1="clr-namespace:HBD.WPF.Shell.Core;assembly=HBD.WPF"
+                    mc:Ignorable="d">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/HBD.WPF.Shell.Controls;component/Themes/Converters.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <cv:PermissionValidationVisibilityConverter x:Key="PermissionValidationVisibilityConverter" />
+
+    <Style x:Key="DefaultViewStyle" TargetType="UserControl">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style TargetType="controls:BusyControl">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontStyle" Value="Italic" />
+        <Setter Property="TextForeground" Value="White" />
+        <Setter Property="Background" Value="{DynamicResource DialogBackgroundBrush}" />
+    </Style>
+
+    <Style TargetType="views:ShellMenuView" BasedOn="{StaticResource DefaultViewStyle}" />
+
+    <Style TargetType="views:ShellTitleView" BasedOn="{StaticResource DefaultViewStyle}">
+        <Setter Property="BorderBrush" Value="WhiteSmoke" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Height" Value="{DynamicResource TitleHeight}" />
+        <Setter Property="Padding" Value="10,0,0,0" />
+        <Setter Property="Background" Value="{DynamicResource DarkBlueBrush}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="{DynamicResource MenuFontSize}" />
+    </Style>
+
+    <Style TargetType="views:ShellMainView" BasedOn="{StaticResource DefaultViewStyle}" />
+
+    <Style TargetType="views:ShellNotificationCenterView" BasedOn="{StaticResource DefaultViewStyle}">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="{DynamicResource DarkBlueBrush}" />
+    </Style>
+
+    <Style x:Key="GroupNotificationItemStyle" TargetType="controls1:TitledContentControl">
+        <Setter Property="HeaderForeground" Value="WhiteSmoke" />
+        <Setter Property="HeaderBackground" Value="Transparent" />
+        <Setter Property="Margin" Value="2" />
+    </Style>
+
+    <Style TargetType="views:ShellStatusView" BasedOn="{StaticResource DefaultViewStyle}">
+        <Setter Property="Height" Value="{DynamicResource StatusHeight}" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="Background" Value="LightGray" />
+    </Style>
+
+    <Style TargetType="Menu">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="{DynamicResource SupperDarkGreyColor}" Opacity="0.8" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Height" Value="{DynamicResource MenuHeight}" />
+    </Style>
+
+    <!--Default Style for all children Menu and MenuItem-->
+    <Style x:Key="MenuItemStyle" TargetType="MenuItem">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="2,10,0,10" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="MaxWidth" Value="250" />
+        <Setter Property="Visibility" Value="{Binding PermissionValidation,Converter={StaticResource PermissionValidationVisibilityConverter}}" />
+        <Setter Property="FontSize" Value="{DynamicResource MenuFontSize}" />
+        <Style.Triggers>
+            <DataTrigger
+                Binding="{Binding Role,RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource IsTopMenuLevel}}"
+                Value="True">
+                <Setter Property="Margin" Value="2" />
+                <Setter Property="Padding" Value="2" />
+                <Setter Property="Foreground" Value="White" />
+                <!--Replace default TextBlock with HorizontalAlignment and VerticalAlignment -->
+                <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate DataType="MenuItem">
+                            <AccessText
+                                Text="{Binding DataContext.Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuItem}}"
+                                HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <AccessText.Style>
+                                    <Style TargetType="AccessText">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding DataContext.DisplayMode,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuItem}}"
+                                                         Value="{x:Static navigation1:DisplayMode.IconOnly}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </AccessText.Style>
+                            </AccessText>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="controls1:MenuTitleItem">
+        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Background" Value="{x:Static SystemColors.ControlBrush}" />
+    </Style>
+
+    <!--MenuItem-->
+    <!-- Ensure the Theme is loaded before using the controls and that theme must have MenuItemStyle for an MenuItem -->
+    <Style x:Key="MenuItemBindingStyle" TargetType="MenuItem" BasedOn="{StaticResource MenuItemStyle}">
+        
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <ItemContainerTemplate>
+                    <StackPanel Orientation="Vertical"
+                                DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=MenuItem}}"
+                                Style="{x:Null}" Margin="0"
+                                d:DataContext="{d:DesignInstance navigation1:MenuInfo}">
+                        <!--Header-->
+                        <AccessText Text="{Binding Title}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <AccessText.Style>
+                                <Style TargetType="AccessText">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding DisplayMode}" Value="{x:Static navigation1:DisplayMode.IconOnly}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </AccessText.Style>
+                        </AccessText>
+                        <!--Description-->
+                        <TextBlock Foreground="Gray" Text="{Binding ToolTip}"
+                                   Margin="0,5,0,0" FontWeight="Normal"
+                                   FontStyle="Italic" FontSize="9" TextWrapping="Wrap"
+                                   HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                   Style="{DynamicResource AutoHideTextBlockStyle}" />
+                    </StackPanel>
+                </ItemContainerTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Converter={StaticResource OfTypeConverter}}"
+                         Value="{x:Type navigation1:MenuInfo}">
+                <Setter Property="Icon" Value="{Binding Icon,Converter={StaticResource ObjectToImageConvertor}}" />
+                <Setter Property="ItemsSource" Value="{Binding Children}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Converter={StaticResource OfTypeConverter}}"
+                         Value="{x:Type navigation1:NavigationInfo}">
+                <Setter Property="Icon" Value="{Binding Icon,Converter={StaticResource ObjectToImageConvertor}}" />
+            </DataTrigger>
+            
+            <!--Separator-->
+            <DataTrigger Binding="{Binding Converter={StaticResource OfTypeConverter}}"
+                         Value="{x:Type navigation1:SeparatorInfo}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Separator />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <!--Menu Title-->
+            <DataTrigger Binding="{Binding Converter={StaticResource OfTypeConverter}}"
+                         Value="{x:Type nv:MenuTitleInfo}">
+           
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <controls1:MenuTitleItem Header="{Binding Title}"
+                                                     d:DataContext="{d:DesignInstance nv:MenuTitleInfo}" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ToolBarItemStyle" TargetType="controls1:ToolBarItem">
+        <Setter Property="MinWidth" Value="150" />
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource LightGrayBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
+    <Style TargetType="{x:Type controls1:ToolBarItem}" BasedOn="{StaticResource ToolBarItemStyle}" />
+
+    <Style TargetType="TextBlock" x:Key="MessageBoxTextStyle">
+        <Setter Property="Foreground" Value="{DynamicResource InfoMessageFroceBrush}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding MessageIconType}" Value="{x:Static core1:MessageIconType.Confirm}">
+                <Setter Property="Foreground" Value="{DynamicResource ConfirmMessageFroceBrush}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding MessageIconType}" Value="{x:Static core1:MessageIconType.Alert}">
+                <Setter Property="Foreground" Value="{DynamicResource AlerMessageFroceBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

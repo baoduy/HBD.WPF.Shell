@@ -1,0 +1,8 @@
+﻿//this file name convention is Module_[Your project Name]
+{
+  "Name": "DemoModule",
+  "Description": "Demo Module",
+  "IsEnabled": true, //or false
+  //The list of assemblies that you want to be exposed to the EMF.
+  "AssemplyFiles": [ "WPF.Demo.Module.dll" ],
+}

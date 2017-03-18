@@ -1,0 +1,478 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:HBD.WPF.Controls"
+    xmlns:local="clr-namespace:HBD.WPF.Windows"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:core="clr-namespace:HBD.WPF.Core"
+    xmlns:core1="clr-namespace:HBD.WPF.Shell.Core"
+    xmlns:converters="clr-namespace:HBD.WPF.Converters"
+    mc:Ignorable="d">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/HBD.WPF;component/Themes/ControlStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <converters:ObjectToImageConvertor x:Key="ObjectToImageConvertor" />
+
+    <Style x:Key="NotificationIconStyle" TargetType="Image" BasedOn="{StaticResource AutoHideImageStyle}">
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="NotificationMessageStyle" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Margin" Value="5,0,5,0" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+    </Style>
+
+    <Style x:Key="NotificationTitleStyle" TargetType="TextBlock" BasedOn="{StaticResource NotificationMessageStyle}">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="TextWrapping" Value="NoWrap" />
+    </Style>
+
+    <Style TargetType="{x:Type controls:HeaderedContentGridControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:HeaderedContentGridControl}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <ContentPresenter Grid.Row="0" Content="{TemplateBinding Header}"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" />
+                        <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:MenuTitleItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:MenuTitleItem}">
+                    <Border Background="{TemplateBinding Background}"
+                            Margin="2,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{TemplateBinding Header}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:ModelWindow">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ModelWindow">
+                    <Canvas Name="PART_ModelRoot" Background="{TemplateBinding Background}">
+                        <!--Window Border-->
+                        <Border Name="PART_WindowRoot" CornerRadius="4" MinWidth="300" MinHeight="150"
+                                BorderBrush="{TemplateBinding TitleBackground}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding WindowBackground}"
+                                MaxWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding ActualHeight}">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" Opacity="0.8" Direction="270" ShadowDepth="2" />
+                            </Border.Effect>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <!--Header-->
+                                    <RowDefinition Height="Auto" />
+                                    <!--Content-->
+                                    <RowDefinition Height="*" />
+                                    <!--Command Buttons and Resize control-->
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--Header-->
+                                <Border Name="PART_Header" Grid.Row="0" Background="{TemplateBinding TitleBackground}"
+                                        Height="{TemplateBinding TitleHeight}"
+                                        Visibility="{TemplateBinding TitleVisibility}"
+                                        AllowDrop="True">
+                                    <StackPanel Orientation="Horizontal">
+                                        <ContentPresenter Content="{TemplateBinding Icon, Converter={StaticResource ObjectToImageConvertor}}" Margin="3,3,5,3"
+                                                          MaxHeight="{TemplateBinding TitleHeight}" />
+
+                                        <TextBlock Foreground="{TemplateBinding TitleForeground}"
+                                               Margin="5,0,0,0"
+                                               Text="{TemplateBinding Title}"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Border>
+                                <!--Close button-->
+                                <Button Name="PART_CloseButton"
+                                        Grid.Row="0" HorizontalAlignment="Right"
+                                        Foreground="{TemplateBinding TitleForeground}"
+                                        Width="{Binding Height, ElementName=PART_Header}"
+                                        FontWeight="Bold"
+                                        Cursor="Hand"
+                                        Content="X"
+                                        BorderThickness="1"
+                                        Visibility="{TemplateBinding CloseButtonVisibility}">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                            <Setter Property="Padding" Value="0,0,0,2" />
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Transparent" />
+                                                    <Setter Property="BorderBrush"
+                                                            Value="{Binding TitleForeground,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=controls:ModelWindow}}" />
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Border Background="{TemplateBinding Background}"
+                                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                                                    <TextBlock Padding="0,0,0,2"
+                                                                               Text="{TemplateBinding Content}"
+                                                                               HorizontalAlignment="Center"
+                                                                               VerticalAlignment="Center" />
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+
+                                <!--Content-->
+                                <ContentControl Grid.Row="1" Content="{TemplateBinding Content}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+
+                                <!--Command Buttons-->
+                                <ItemsControl Grid.Row="2" HorizontalAlignment="Right"
+                                              ItemsSource="{TemplateBinding DialogCommands}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate DataType="core1:DialogCommand">
+                                            <Button MinWidth="80" CommandParameter="{Binding Id}"
+                                                    Command="{Binding CommandButtonAction,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=controls:ModelWindow}}"
+                                                    Content="{Binding Text}"
+                                                    IsDefault="{Binding IsDefault}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                    <ItemsControl.Style>
+                                        <Style TargetType="ItemsControl">
+                                            <Setter Property="Visibility" Value="Hidden" />
+                                            <Setter Property="Height" Value="0" />
+                                            <Setter Property="Margin" Value="0" />
+                                            <Style.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding HasItems, RelativeSource={RelativeSource Mode=Self}}"
+                                                    Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                    <Setter Property="Height" Value="28" />
+                                                    <Setter Property="Margin" Value="10" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ItemsControl.Style>
+                                </ItemsControl>
+                                <!--Resizable Control-->
+                                <Border Name="PART_Resize" Grid.Row="2" HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom" Width="10" Height="10"
+                                        Cursor="SizeNWSE"
+                                        Grid.ZIndex="10000">
+                                    <Polygon Points="1,0,1,1,0,1" Width="10" Height="10" Stretch="Fill">
+                                        <Polygon.Style>
+                                            <Style TargetType="Polygon">
+                                                <Setter Property="Fill" Value="Transparent" />
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                        Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Mode=Self}}"
+                                                        Value="True">
+                                                        <DataTrigger.EnterActions>
+                                                            <BeginStoryboard>
+                                                                <Storyboard>
+                                                                    <ColorAnimation To="DodgerBlue"
+                                                                                    Storyboard.TargetProperty="(Polygon.Fill).(SolidColorBrush.Color)"
+                                                                                    FillBehavior="HoldEnd"
+                                                                                    Duration="0:0:1" AutoReverse="True"
+                                                                                    RepeatBehavior="Forever" />
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </DataTrigger.EnterActions>
+                                                        <DataTrigger.ExitActions>
+                                                            <BeginStoryboard>
+                                                                <Storyboard>
+                                                                    <ColorAnimation To="Transparent"
+                                                                                    Storyboard.TargetProperty="(Polygon.Fill).(SolidColorBrush.Color)"
+                                                                                    FillBehavior="HoldEnd"
+                                                                                    Duration="0:0:1" />
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </DataTrigger.ExitActions>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Polygon.Style>
+                                    </Polygon>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:DialogWindow">
+        <Setter Property="Background" Value="{x:Static SystemColors.ControlBrush}" />
+        <Setter Property="MinHeight" Value="150" />
+        <Setter Property="MinWidth" Value="350" />
+        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:DialogWindow">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" />
+
+                        <ItemsControl Grid.Row="2" HorizontalAlignment="Right"
+                                      ItemsSource="{TemplateBinding DialogCommands}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="core1:DialogCommand">
+                                    <Button MinWidth="80" CommandParameter="{Binding Id}"
+                                            Command="{Binding CommandButtonAction, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DialogWindow}}"
+                                            Content="{Binding Text}"
+                                            IsDefault="{Binding IsDefault}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.Style>
+                                <Style TargetType="ItemsControl">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Setter Property="Height" Value="0" />
+                                    <Setter Property="Padding" Value="0" />
+                                    <Style.Triggers>
+                                        <Trigger Property="HasItems" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                            <Setter Property="Height" Value="48" />
+                                            <Setter Property="Padding" Value="10" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ItemsControl.Style>
+                        </ItemsControl>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="NotificationItemEffectStyle" TargetType="controls:NotificationItem">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="0" Opacity="0.5" BlurRadius="5" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="DarkGray" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Background" Value="Black" />
+            </Trigger>
+            <EventTrigger RoutedEvent="MouseDown">
+                <BeginStoryboard>
+                    <Storyboard BeginTime="0:0:0">
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush.(SolidColorBrush.Color)"
+                                                      BeginTime="0:0:0">
+                            <DiscreteColorKeyFrame Value="White" KeyTime="0:0:0" />
+                        </ColorAnimationUsingKeyFrames>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="BorderThickness" BeginTime="0:0:0">
+                            <DiscreteThicknessKeyFrame Value="2" KeyTime="0:0:0.01" />
+                        </ThicknessAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard BeginTime="0:0:0">
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush.(SolidColorBrush.Color)"
+                                                      BeginTime="0:0:0">
+                            <DiscreteColorKeyFrame Value="Transparent" KeyTime="0:0:0" />
+                        </ColorAnimationUsingKeyFrames>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="BorderThickness" BeginTime="0:0:0">
+                            <DiscreteThicknessKeyFrame Value="1" KeyTime="0:0:0.01" />
+                        </ThicknessAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="controls:NotificationItem" BasedOn="{StaticResource NotificationItemEffectStyle}">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:NotificationItem">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Margin="{TemplateBinding Margin}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="5">
+
+                        <Grid x:Name="PART_Root"
+                              Tag="{Binding Id}"
+                              Background="Transparent" d:DataContext="{d:DesignInstance core1:INotificationInfo}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" MinWidth="3" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="43" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--Header-->
+                            <ContentPresenter Grid.Row="0" Grid.Column="0" Content="{Binding Icon, Converter={StaticResource ObjectToImageConvertor}}"
+                                              Width="{TemplateBinding IconWidth}" />
+
+                            <TextBlock Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding Title}"
+                                       Style="{StaticResource NotificationTitleStyle}" />
+
+                            <Button Name="PART_CloseButton"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    Grid.Row="0" Grid.Column="2"
+                                    Margin="0,0,5,0"
+                                    Style="{StaticResource XCloseButtonStyle}"
+                                    Visibility="{TemplateBinding IsMouseOver, Converter={StaticResource NotBooleanToHidden}}" />
+
+                            <!--Content-->
+                            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                       Style="{StaticResource NotificationMessageStyle}"
+                                       Text="{Binding Message}" />
+
+                            <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Right"
+                                    Width="0.5"
+                                    Margin="0,10,0,10">
+                                <Border.Background>
+                                    <SolidColorBrush
+                                        Color="{Binding (Foreground).(SolidColorBrush.Color), RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=controls:NotificationItem}}"
+                                        Opacity="0.3" />
+                                </Border.Background>
+                            </Border>
+
+                            <TextBlock Grid.Row="1" Grid.Column="2"
+                                       Text="{Binding FormatedCreatedDate}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock" BasedOn="{StaticResource NotificationMessageStyle}">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DataTemplate x:Key="MessageTemplate" DataType="controls:NotificationItem">
+        <controls:NotificationItem x:Name="NotificationItem"
+                                   LoadedCommand="{Binding ItemLoadedCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=core:INotificationWindow}}"
+                                   ClickCommand="{Binding ItemClickedCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=core:INotificationWindow}}"
+                                   Height="65" />
+        <DataTemplate.Triggers>
+            <EventTrigger RoutedEvent="controls:NotificationItem.Loaded" SourceName="NotificationItem">
+                <BeginStoryboard x:Name="FadeInStoryBoard">
+                    <Storyboard TargetName="NotificationItem">
+                        <DoubleAnimation From="0.001" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:0.5" />
+                        <DoubleAnimation From="1" Storyboard.TargetProperty="Height" Duration="0:0:0.5" />
+                        <DoubleAnimation From="1" To="0" Storyboard.TargetProperty="Opacity" Duration="0:0:1"
+                                         BeginTime="0:0:6" />
+                        <DoubleAnimation To="0" Storyboard.TargetProperty="Height" Duration="0:0:0.5" BeginTime="0:0:7" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <SeekStoryboard Offset="0:0:3" BeginStoryboardName="FadeInStoryBoard" />
+                    <PauseStoryboard BeginStoryboardName="FadeInStoryBoard" />
+                </Trigger.EnterActions>
+
+                <Trigger.ExitActions>
+                    <SeekStoryboard Offset="0:0:3" BeginStoryboardName="FadeInStoryBoard" />
+                    <ResumeStoryboard BeginStoryboardName="FadeInStoryBoard" />
+                </Trigger.ExitActions>
+            </Trigger>
+
+            <EventTrigger RoutedEvent="controls:NotificationItem.Close">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard TargetName="NotificationItem">
+                            <DoubleAnimation From="1" To="0" Storyboard.TargetProperty="Opacity" Duration="0:0:0.2"
+                                             BeginTime="0:0:0" />
+                            <DoubleAnimation To="0" Storyboard.TargetProperty="Height" Duration="0:0:0.2"
+                                             BeginTime="0:0:0.1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <Style TargetType="local:NotificationWindow">
+        <Setter Property="MaxHeight" Value="1024" />
+        <Setter Property="MaxWidth" Value="1024" />
+        <Setter Property="MinHeight" Value="50" />
+        <Setter Property="MinWidth" Value="150" />
+        <Setter Property="Title" Value="Notifications" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Topmost" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:NotificationWindow">
+                    <ItemsControl FocusVisualStyle="{x:Null}"
+                                  ItemsSource="{TemplateBinding Notifications}"
+                                  ItemTemplate="{StaticResource MessageTemplate}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,1 @@
+﻿Please read 'Package\HBD.WinForms.Shell<version>\ReadMe.html

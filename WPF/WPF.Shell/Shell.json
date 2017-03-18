@@ -1,0 +1,11 @@
+﻿{
+  "Name": "HBD.WPF.Shell",
+  "Title": "HBD Window Forms Shell", //The title will be display in the Main Window.
+  "Logo": "Themes/MainWindow.png",
+  "Environment": "DEV", //Environment Dev-x,Staging-x,PrePrd-x and PRD.
+  "EnvironmentDescription": "Development Environment",
+  "ModulePath": "./Modules", //Default folder is Modules
+  // The binaries that will be imported to Mef.
+  // If it is just file name then the root folder will be from AppDomain.CurrentDomain.BaseDirectory.
+  "ImportedBinaries": [ "HBD.WPF.Shell.Services.dll", "HBD.WPF.Shell.UI.dll" ]
+}

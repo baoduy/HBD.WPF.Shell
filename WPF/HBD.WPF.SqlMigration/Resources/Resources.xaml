@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System">
+
+    <system:Uri x:Key="SqlIconPath">pack://application:,,,/HBD.WPF.SqlMigration.Module;component/Resources/Icons/Sql.png</system:Uri>
+    <system:Uri x:Key="DatabaseIconPath">pack://application:,,,/HBD.WPF.SqlMigration.Module;component/Resources/Icons/Database.png</system:Uri>
+
+    <BitmapImage x:Key="SqlIconBm" UriSource="{StaticResource SqlIconPath}" />
+    <BitmapImage x:Key="DatabaseIconBm" UriSource="{StaticResource DatabaseIconPath}" />
+
+    <Image x:Key="SqlIcon" Source="{StaticResource SqlIconBm}" Width="16" Height="16" />
+    <Image x:Key="DatabaseIcon" Source="{StaticResource DatabaseIconBm}" Width="16" Height="16" />
+</ResourceDictionary>

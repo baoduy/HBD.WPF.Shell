@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>HBD.WPF.Shell</id>
+    <version>$version$</version>
+    <title>HBD.WPF.Shell</title>
+    <authors>Duy Hoang</authors>
+    <owners>Duy Hoang</owners>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/baoduy/HBD.WPF.Shell</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/baoduy/Images/master/NugetLogo.PNG</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The Shell for WPF Application that provides a core-foundation to develop a Module-able application.</description>
+    <summary>The Shell for WPF Application that provides a core-foundation to develop a loosely coupled, module-able and maintainable application.</summary>
+    <releaseNotes>
+    </releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <language>en-US</language>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="HBD.Mef" version="1.0.3" />
+        <dependency id="Prism.Core" version="6.2.0" />
+        <dependency id="Prism.Mef" version="6.2.0" />
+        <dependency id="Prism.Wpf" version="6.2.0" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\*.*" target="tools\WPF.Shell\" exclude="bin\Release\*.txt" />
+    <file src="bin\Release\Resources\*.*" target="tools\WPF.Shell\Resources\" />
+    <file src="bin\Release\How_To_START.txt" target="content\How_To_START.txt" />
+    <file src="bin\Release\Modules\HBD.WPF.ModuleManagement.Plugin\*.*" target="tools\WinForms.Shell\Modules\HBD.WPF.ModuleManagement.Plugin\" />
+    <file src="..\Images\*.*" target="tools\Images\" />
+    <file src="..\ReadMe.html" target="tools\ReadMe.html" />
+  </files>
+</package>

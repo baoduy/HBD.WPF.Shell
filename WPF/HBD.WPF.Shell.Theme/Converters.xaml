@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cv="clr-namespace:HBD.WPF.Converters;assembly=HBD.WPF">
+
+    <cv:NotBooleanToHiddenConverter x:Key="NotBooleanToHidden" />
+    <cv:NotBooleanToCollapsedConverter x:Key="NotBooleanToCollapsed" />
+    <cv:BooleanToCollapsedConverter x:Key="BooleanToCollapsed" />
+    <cv:BooleanToHiddenConverter x:Key="BooleanToHidden" />
+    <cv:CollectionHasItemToVisibilityConverter x:Key="CollectionHasItemToVisibility" />
+    <cv:IsCollectionHasItemConverter x:Key="IsCollectionHasItem" />
+    <cv:NotBooleanConverter x:Key="NotBoolean" />
+    <cv:IsNotNullConverter x:Key="IsNotNull" />
+    <cv:OfTypeConverter x:Key="OfTypeConverter" />
+    <cv:OpositeValueConverter x:Key="OpositeValue" />
+    <cv:StringNullOrEmptyConverter x:Key="StringNullOrEmpty" />
+    <cv:IsTopMenuLevelConverter x:Key="IsTopMenuLevel" />
+    <cv:ObjectToImageConvertor x:Key="ObjectToImageConvertor" />
+    <cv:IsTypeOfConverter x:Key="IsTypeOfConverter"/>
+</ResourceDictionary>

@@ -1,0 +1,57 @@
+﻿<UserControl xmlns:controls="clr-namespace:HBD.WPF.ModuleManager.Module.Controls"  
+             x:Class="HBD.WPF.ModuleManager.Module.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="500">
+    <UserControl.Resources>
+        <!--<ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HBD.WPF.ModuleManager.Module;component/Theme/Converters.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <GridSplitter Grid.Column="1" Width="4" VerticalAlignment="Stretch" HorizontalAlignment="Left" />
+
+        <ListBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" ItemsSource="{Binding Modules}" 
+                 SelectedItem="{Binding SelectedModule}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" Margin="5" ToolTip="{Binding Description}">
+                        <TextBlock Name="TextName"  Text="{Binding Name}" FontWeight="Bold" />
+                        <TextBlock Name="TextDes"  Text="{Binding Description}" Margin="0,2,0,0"
+                                   FontSize="9" FontStyle="Italic" Foreground="DarkGray" />
+                    </StackPanel>
+
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem,Mode=FindAncestor}}"
+                                     Value="True">
+                            <Setter TargetName="TextName" Property="Foreground" Value="Brown" />
+                            <Setter TargetName="TextDes" Property="Foreground" Value="White" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <controls:ModuleDetails Grid.Row="0" Grid.Column="1" ModuleConfig="{Binding SelectedModule}" Margin="5,0,0,0"
+                                IsReadOnly="{Binding SelectedModule.AllowToManage,Converter={StaticResource NotBoolean}}"
+                                Visibility="{Binding SelectedModule,Converter={StaticResource NullToHidden}}" />
+
+        <Button Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="70" Height="25"
+                Command="{Binding Save}">Save</Button>
+    </Grid>
+</UserControl>

@@ -13,7 +13,7 @@ using Prism.Modularity;
 namespace HBD.WPF.ModuleManager.Module
 {
     [ModuleExport(typeof(StartupModuleManager), InitializationMode = InitializationMode.WhenAvailable)]
-    public class StartupModuleManager : ModuleBase
+    public class StartupModuleManager : WpfModuleBase
     {
         protected override void MenuConfiguration(IShellMenuService menuSet)
         {
@@ -24,7 +24,7 @@ namespace HBD.WPF.ModuleManager.Module
                 .WithIcon(GetResource("MM_MenuIcon"))
                 .DisplayAt(0)
                 //.AndValidForRoles(DefaultRoles.Administrator)
-                .For(new NavigationRegionParameter(typeof(MainView)));
+                .For(new RegionNavigationParameter(typeof(MainView)));
         }
     }
 }

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>HBD.WPF.Shell</id>
+    <version>$version$</version>
+    <title>HBD.WPF.Shell</title>
+    <authors>Duy Hoang</authors>
+    <owners>Duy Hoang</owners>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/baoduy/HBD.WPF.Shell</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/baoduy/Images/master/NugetLogo.PNG</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The WPF core-foundation to develop a Module-able, Pluginable application.</description>
+    <summary>The WPF core-foundation to develop a Module-able, Pluginable application.</summary>
+    <releaseNotes>
+    </releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <language>en-US</language>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="HBD.Mef" version="1.0.4" />
+        <dependency id="HBD.Framework" version="1.0.5" />
+        <dependency id="Prism.Core" version="6.2.0" />
+        <dependency id="Prism.Mef" version="6.2.0" />
+        <dependency id="Prism.Wpf" version="6.2.0" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\**" target="tools\Shell\" exclude="**\*.pdb"/>
+    <!--<file src="..\ReadMe.html" target="content\ReadMe.html" />-->
+    <file src="bin\Release\HBD.WPF.dll" target="lib\.net4.6.1\HBD.WPF.dll" />
+    <file src="bin\Release\HBD.WPF.Shell.Infos.dll" target="lib\.net4.6.1\HBD.WPF.Shell.Infos.dll" />
+    <!--<file src="..\HBD.WPF.Shell.Services\bin\Release\HBD.WPF.Shell.Services.dll" target="tools\Shell\HBD.WPF.Shell.Services.dll" />
+    <file src="..\HBD.WPF.Shell.Theme\bin\Release\HBD.WPF.Shell.Theme.dll" target="tools\Shell\Themes\HBD.WPF.Shell.Theme.dll" />
+    <file src="..\HBD.WPF.Shell.UI\bin\Release\HBD.WPF.Shell.UI.dll" target="tools\Shell\HBD.WPF.Shell.UI.dll" />
+    <file src="..\HBD.WPF.ModuleManager.Module\bin\Release\*.*" target="tools\Shell\Modules\HBD.WPF.ModuleManager.Module\" />
+    <file src="..\HBD.WPF.ShellOptionManager.Module\bin\Release\*.*" target="tools\Shell\Modules\HBD.WPF.ShellOptionManager.Module\" />-->
+  </files>
+</package>

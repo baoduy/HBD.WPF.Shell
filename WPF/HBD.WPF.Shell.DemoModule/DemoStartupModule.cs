@@ -16,7 +16,7 @@ using Prism.Modularity;
 namespace WPF.Demo.Module
 {
     [ModuleExport(typeof(DemoStartupModule), InitializationMode = InitializationMode.WhenAvailable)]
-    public class DemoStartupModule : ModuleBase
+    public class DemoStartupModule : WpfModuleBase
     {
         protected override void MenuConfiguration(IShellMenuService menuSet)
         {
@@ -25,16 +25,16 @@ namespace WPF.Demo.Module
                 .AddTitle("Title 1")
                 .AndNavigation("Demo View 1")
                 .WithToolTip("Hello Tooltip")
-                .For(new NavigationRegionParameter(null, typeof(View1)))
+                .ForRegion(null, typeof(View1))
                 .AndNavigation("Demo View 2")
-                .For(new NavigationRegionParameter(null, typeof(ColorViewer)))
+                .ForRegion(typeof(ColorViewer))
                 .AndSeparator()
                 .AddTitle("Title 2")
                 .AndNavigation("Demo View 11")
                 .WithToolTip("Hello Tooltip")
-                .For(new NavigationRegionParameter(null, typeof(View1)))
+                .ForRegion(typeof(View1))
                 .AndNavigation("Demo View 22")
-                .For(new NavigationRegionParameter(null, typeof(ColorViewer)));
+                .For<ColorViewer>();
 
             menuSet.Menu("_Demo2");
         }

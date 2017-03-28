@@ -41,7 +41,7 @@
       <HintPath>..\packages\HBD.Framework.1.0.5\lib\net46\HBD.Framework.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Mef.1.0.4-beta2\lib\net461\HBD.Mef.dll</HintPath>
+      <HintPath>..\packages\HBD.Mef.1.0.4\lib\net461\HBD.Mef.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
@@ -173,14 +173,15 @@
       <Project>{92BD69A7-7217-4C59-BA84-41D7016903C0}</Project>
       <Name>HBD.WPF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WPF.Shell.Controls\HBD.WPF.Shell.Controls.csproj">
+    <ProjectReference Include="..\HBD.WPF.Shell.Controls\HBD.WPF.Shell.Controls.csproj">
       <Project>{c3314f62-d826-46ae-9d50-c94ad8fbf055}</Project>
       <Name>HBD.WPF.Shell.Controls</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)*.*" "$(SolutionDir)..\Published\Shell\" /s /y /r</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)*.*" "$(SolutionDir)..\Published\Shell\" /s /y /r
+xcopy "$(TargetDir)*.*" "$(SolutionDir)HBD.WPF.Shell\bin\$(ConfigurationName)" /s /y /r</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

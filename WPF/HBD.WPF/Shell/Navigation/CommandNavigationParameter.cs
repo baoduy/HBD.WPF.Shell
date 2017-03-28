@@ -9,15 +9,15 @@ using Microsoft.Expression.Interactivity.Core;
 
 namespace HBD.WPF.Shell.Navigation
 {
-    public class NavigationCommandParameter : INavigationParameter
+    public class CommandNavigationParameter : INavigationParameter
     {
-        public NavigationCommandParameter(ICommand command, object parameter = null)
+        public CommandNavigationParameter(ICommand command, object parameter = null)
         {
             Command = command;
             CommandParameter = parameter;
         }
 
-        public NavigationCommandParameter(Action action)
+        public CommandNavigationParameter(Action action)
         {
             Command = new ActionCommand(action);
         }

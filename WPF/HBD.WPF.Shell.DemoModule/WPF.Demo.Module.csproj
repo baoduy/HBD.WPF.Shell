@@ -41,7 +41,7 @@
       <HintPath>..\packages\HBD.Framework.1.0.5\lib\net46\HBD.Framework.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Mef.1.0.4-beta2\lib\net461\HBD.Mef.dll</HintPath>
+      <HintPath>..\packages\HBD.Mef.1.0.4\lib\net461\HBD.Mef.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
@@ -154,7 +154,11 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(SolutionDir)..\Published\Shell\Modules\$(ProjectName)" mkdir "$(SolutionDir)..\Published\Shell\Modules\$(ProjectName)" 
-xcopy "$(TargetDir)*.*" "$(SolutionDir)..\Published\Shell\Modules\$(ProjectName)" /s /y /r</PostBuildEvent>
+xcopy "$(TargetDir)$(ProjectName).*" "$(SolutionDir)..\Published\Shell\Modules\$(ProjectName)" /s /y /r
+xcopy "$(TargetDir)*.json" "$(SolutionDir)..\Published\Shell\Modules\$(ProjectName)" /s /y /r
+if not exist "$(SolutionDir)HBD.WPF.Shell\bin\$(ConfigurationName)\Modules\$(ProjectName)" mkdir "$(SolutionDir)HBD.WPF.Shell\bin\$(ConfigurationName)\Modules\$(ProjectName)" 
+xcopy "$(TargetDir)$(ProjectName).*" "$(SolutionDir)HBD.WPF.Shell\bin\$(ConfigurationName)\Modules\$(ProjectName)" /s /y /r
+xcopy "$(TargetDir)*.json" "$(SolutionDir)HBD.WPF.Shell\bin\$(ConfigurationName)\Modules\$(ProjectName)" /s /y /r</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

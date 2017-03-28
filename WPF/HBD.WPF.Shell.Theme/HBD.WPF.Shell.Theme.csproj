@@ -113,7 +113,10 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(SolutionDir)..\Published\Shell\Themes\" mkdir "$(SolutionDir)..\Published\Shell\Themes\" 
-xcopy "$(TargetDir)HBD.WPF.Shell.Theme.*" "$(SolutionDir)..\Published\Shell\Themes\" /s /y /r</PostBuildEvent>
+xcopy "$(TargetDir)HBD.WPF.Shell.Theme.*" "$(SolutionDir)..\Published\Shell\Themes\" /s /y /r
+if not exist "$(SolutionDir)HBD.WPF.Shell\bin\$(ConfigurationName)\Themes" mkdir "$(SolutionDir)HBD.WPF.Shell\bin\$(ConfigurationName)\Themes" 
+xcopy "$(TargetDir)HBD.WPF.Shell.Theme.*" "$(SolutionDir)HBD.WPF.Shell\bin\$(ConfigurationName)\Themes" /s /y /r
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

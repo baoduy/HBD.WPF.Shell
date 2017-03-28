@@ -12,7 +12,7 @@ using HBD.Mef.Logging;
 
 namespace HBD.WPF.Shell.Modularity
 {
-    public abstract class ModuleBase : ShellModuleBase
+    public abstract class WpfModuleBase : ShellModuleBase
     {
         protected override IEnumerable<IViewInfo> GetStartUpViewTypes()
         {

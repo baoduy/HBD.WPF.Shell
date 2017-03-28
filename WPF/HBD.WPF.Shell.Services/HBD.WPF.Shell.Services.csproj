@@ -39,7 +39,7 @@
       <HintPath>..\packages\HBD.Framework.1.0.5\lib\net46\HBD.Framework.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Mef.1.0.4-beta2\lib\net461\HBD.Mef.dll</HintPath>
+      <HintPath>..\packages\HBD.Mef.1.0.4\lib\net461\HBD.Mef.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
@@ -77,6 +77,10 @@
     <Compile Include="ToolBarSet.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HBD.WPF.Shell.Controls\HBD.WPF.Shell.Controls.csproj">
+      <Project>{c3314f62-d826-46ae-9d50-c94ad8fbf055}</Project>
+      <Name>HBD.WPF.Shell.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HBD.WPF.Shell.Infos\HBD.WPF.Shell.Infos.csproj">
       <Project>{8031a7e0-3a1a-4a88-84be-7fafae19a76c}</Project>
       <Name>HBD.WPF.Shell.Infos</Name>
@@ -85,17 +89,14 @@
       <Project>{92bd69a7-7217-4c59-ba84-41d7016903c0}</Project>
       <Name>HBD.WPF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WPF.Shell.Controls\HBD.WPF.Shell.Controls.csproj">
-      <Project>{C3314F62-D826-46AE-9D50-C94AD8FBF055}</Project>
-      <Name>HBD.WPF.Shell.Controls</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)*.*" "$(SolutionDir)..\Published\Shell\" /s /y /r</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)HBD.WPF.Shell.Services.*" "$(SolutionDir)..\Published\Shell\" /s /y /r
+xcopy "$(TargetDir)HBD.WPF.Shell.Services.*" "$(SolutionDir)HBD.WPF.Shell\bin\$(ConfigurationName)" /s /y /r</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

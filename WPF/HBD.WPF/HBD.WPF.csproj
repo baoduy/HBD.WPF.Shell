@@ -44,7 +44,7 @@
       <HintPath>..\packages\HBD.Framework.1.0.5\lib\net46\HBD.Framework.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Mef.1.0.4-beta2\lib\net461\HBD.Mef.dll</HintPath>
+      <HintPath>..\packages\HBD.Mef.1.0.4\lib\net461\HBD.Mef.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
@@ -134,9 +134,10 @@
     <Compile Include="Shell\Navigation\DefaultToolBarItem.cs" />
     <Compile Include="Shell\Navigation\INavigationParameterExecuter.cs" />
     <Compile Include="Shell\Navigation\IToolBarSet.cs" />
-    <Compile Include="Shell\Navigation\NavigationCommandParameter.cs" />
+    <Compile Include="Shell\Navigation\CommandNavigationParameter.cs" />
     <Compile Include="Shell\Navigation\NavigationParameterExecuterBase.cs" />
-    <Compile Include="Shell\Navigation\NavigationRegionParameter.cs" />
+    <Compile Include="Shell\Navigation\RegionNavigationParameter.cs" />
+    <Compile Include="Shell\NotificationExtensions.cs" />
     <Compile Include="Shell\Regions\IShellRegionNavigationService.cs" />
     <Compile Include="Shell\Regions\ScopedRegionNavigationContentLoader.cs" />
     <Compile Include="Shell\Core\NotificationInfoCollection.cs" />

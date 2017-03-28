@@ -267,11 +267,11 @@ namespace HBD.WPF.Shell.Services
                 };
                 window.Closed += (s, e) =>
                 {
+                    RemoveFromCache(parentViewModel, (IDialogWindow)s);
+
                     var closedResult = new DialogResult(window.MessageBoxResult, dialogOption.Parameters);
                     dialogAware?.DialogClosed(closedResult);
                     dialogCallback?.Invoke(closedResult);
-
-                    RemoveFromCache(parentViewModel, (IDialogWindow) s);
                 };
 
                 window.ShowDialog();

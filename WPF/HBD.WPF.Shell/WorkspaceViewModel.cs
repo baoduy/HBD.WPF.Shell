@@ -78,14 +78,14 @@ namespace HBD.WPF.Shell
                 .AddSeparator()
                 .AddNavigation("_Exit")
                 .WithIcon(GetResource(ResourceKeys.ExitIcon))
-                .For(new NavigationCommandParameter(Application.Current.MainWindow.Close));
+                .For(new CommandNavigationParameter(Application.Current.MainWindow.Close));
 
             menuModel.AddNavigation("_Notification Center")
                 .WithIcon(GetResource(ResourceKeys.NotificationBlue))
                 .WithToolTip("Notification Center")
                 .WithAlignment(MenuAlignment.Right)
                 .DisplayIconOnly()
-                .For(new NavigationRegionParameter(RegionNames.RightRegion, typeof(IShellNotificationCenterView)));
+                .For(new RegionNavigationParameter(RegionNames.RightRegion, typeof(IShellNotificationCenterView)));
         }
 
         private void InitializeRegions()

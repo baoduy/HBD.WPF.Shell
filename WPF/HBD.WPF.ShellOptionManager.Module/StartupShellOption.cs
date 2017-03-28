@@ -13,7 +13,7 @@ using Prism.Modularity;
 namespace HBD.WPF.ShellOptionManager.Module
 {
     [ModuleExport(typeof(StartupShellOption), InitializationMode = InitializationMode.WhenAvailable)]
-    public class StartupShellOption : ModuleBase
+    public class StartupShellOption : WpfModuleBase
     {
         protected override void MenuConfiguration(IShellMenuService menuSet)
         {
@@ -24,7 +24,7 @@ namespace HBD.WPF.ShellOptionManager.Module
                 .WithIcon(GetResource("OptionIcon"))
                 .DisplayAt(1)
                 //.AndValidForOperations(DefaultOperations.UpdateSetting.ToString())
-                .For(new NavigationRegionParameter(typeof(ShellOptionView)));
+                .For(new RegionNavigationParameter(typeof(ShellOptionView)));
         }
     }
 }

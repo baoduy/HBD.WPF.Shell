@@ -27,7 +27,9 @@ namespace HBD.WPF.Shell.Services
             _growlNotifications.SetResourceReference(FrameworkElement.StyleProperty, "NotificationWindowStyle");
             _growlNotifications.ItemClick += (s, e) =>
             {
-                NavigationExecuter.Execute(e.NotificationInfo.NavigationsParameters, DefaultNavigationCallback);
+                if (e.NotificationInfo.NavigationParameter == null) return;
+
+                NavigationExecuter.Execute(e.NotificationInfo.NavigationParameter, DefaultNavigationCallback);
                 Notifications.Remove(e.NotificationInfo);
             };
         }

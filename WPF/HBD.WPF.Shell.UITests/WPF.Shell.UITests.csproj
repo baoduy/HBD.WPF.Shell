@@ -44,7 +44,7 @@
       <HintPath>..\packages\HBD.Framework.1.0.5\lib\net46\HBD.Framework.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Mef.1.0.4-beta2\lib\net461\HBD.Mef.dll</HintPath>
+      <HintPath>..\packages\HBD.Mef.1.0.4\lib\net461\HBD.Mef.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
@@ -88,7 +88,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WPF.Shell.Views\HBD.WPF.Shell.UI.csproj">
+    <ProjectReference Include="..\HBD.WPF.Shell.UI\HBD.WPF.Shell.UI.csproj">
       <Project>{54C96FAC-8B4B-4B69-AC68-8785A9589007}</Project>
       <Name>HBD.WPF.Shell.UI</Name>
     </ProjectReference>

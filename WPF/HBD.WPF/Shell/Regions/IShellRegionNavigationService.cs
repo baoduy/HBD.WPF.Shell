@@ -22,7 +22,7 @@ namespace HBD.WPF.Shell.Regions
 
         void LoadView([NotNull]IViewInfo viewInfo);
 
-        void RequestNavigate([NotNull]NavigationRegionParameter command);
+        void RequestNavigate([NotNull]RegionNavigationParameter command);
         void RequestNavigate([NotNull]string regionName, IDictionary<string, object> parameters = null);
         void RequestNavigate([NotNull]Type viewType, IDictionary<string, object> parameters = null);
         void RequestNavigate<TViewType>(IDictionary<string, object> parameters = null);

@@ -17,7 +17,7 @@ using Prism.Modularity;
 namespace HBD.WPF.SqlMigration.Module
 {
     [ModuleExport(typeof(SqlStartupModule), InitializationMode = InitializationMode.WhenAvailable)]
-    public class SqlStartupModule : ModuleBase
+    public class SqlStartupModule : WpfModuleBase
     {
         protected override IEnumerable<IViewInfo> GetStartUpViewTypes()
         {

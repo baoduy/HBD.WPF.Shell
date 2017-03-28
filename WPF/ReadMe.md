@@ -5,18 +5,22 @@
 ##### Nuget Package:
 >PM> *Install-Package HBD.WPF.Shell*
 
-# HBD.WPF.Shell
+*<span style='color:blue'>The find the completed post about my Workspace, Framework and Open source libraries here at [drunkcoding.net](https://drunkcoding.net)<span>*
+
+# [HBD.WPF.Shell](https://drunkcoding.net/the-workspace-for-wpf-application/)
 As you know, [Prism](https://github.com/PrismLibrary/) is a useful libraries had been indutruced by Microsoft for Windows Presentation Foundation (WPF).
 This libraries helps to build a flexible, modulable and easy-to-maintain window application.
 
-So today, I would like to share with you about my free and open source WPF project named HBD.WPF.Shell had been builded based on Prism and Modulity technology. 
-You can find more information about this in [here](https://msdn.microsoft.com/en-us/library/ff921153(v=pandp.40).aspx)
+So, my free and open source WPF project named HBD.WPF.Shell had been builded based on Prism and Modulity technology. 
+You can find more information about this technology in [here](https://msdn.microsoft.com/en-us/library/ff921153(v=pandp.40).aspx)
 
-# 1. Architecture Design
+# Topics
+### 1. [The Workspace for WPF App Instroduction.](http://drunkcoding.net/workspace-wpf-application-introduction/)
+### 2. [Quick start with Module development.](http://drunkcoding.net/the-wpf-workspace-quick-start/)
 
 # Source code
 - [HBD.WPF.Shell](https://github.com/baoduy/HBD.WPF.Shell) source code.
-- [Demo.Module]() source code.
+- [HBD.WPF.Demo.Module](https://github.com/baoduy/WPF-Workspace-Demo-Module) source code.
 
 >*Hope, this Shell will help you to develop a plugin-able application faster and easier.
 >Your feedback and ideas are much appreciated.

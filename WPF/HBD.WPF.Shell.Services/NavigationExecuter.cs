@@ -22,20 +22,27 @@ namespace HBD.WPF.Shell.Services
 
         public override void Execute([NotNull]INavigationParameter parameter, Action<NavigationResult> navigationCallback)
         {
-            Guard.ArgumentIsNotNull(parameter, nameof(parameter));
+            if (parameter == null) return;
 
-            if (parameter is NavigationCommandParameter)
-                this.ExecuteCommand((NavigationCommandParameter)parameter);
-            else this.ExecuteRegion((NavigationRegionParameter)parameter);
+            if (parameter is CommandNavigationParameter)
+                this.ExecuteCommand((CommandNavigationParameter)parameter);
+            else if (parameter is RegionNavigationParameter)
+                this.ExecuteRegion((RegionNavigationParameter)parameter);
+            else if (parameter is ActionNavigationParameter)
+                this.ExecuteAction((ActionNavigationParameter)parameter);
+            else throw new NotSupportedException(parameter.GetType().FullName);
         }
 
-        protected virtual void ExecuteCommand([NotNull]NavigationCommandParameter command)
+        protected virtual void ExecuteCommand([NotNull]CommandNavigationParameter command)
         {
             if (command.Command.CanExecute(command.CommandParameter))
                 command.Command.Execute(command.CommandParameter);
         }
 
-        protected virtual void ExecuteRegion([NotNull]NavigationRegionParameter command)
+        protected virtual void ExecuteRegion([NotNull]RegionNavigationParameter command)
            => NavigationService.RequestNavigate(command);
+
+        protected virtual void ExecuteAction([NotNull]ActionNavigationParameter action)
+            => action.Action.Invoke();
     }
 }

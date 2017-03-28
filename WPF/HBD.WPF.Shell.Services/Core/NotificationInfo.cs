@@ -32,7 +32,6 @@ namespace HBD.WPF.Shell.Services.Core
         {
             Id = Guid.NewGuid();
             CreatedDate = DateTime.Now;
-            NavigationsParameters = new List<INavigationParameter>();
         }
 
         public string Message
@@ -130,6 +129,6 @@ namespace HBD.WPF.Shell.Services.Core
             set { SetValue(ref _isKeepIncentral, value); }
         }
 
-        public IList<INavigationParameter> NavigationsParameters { get; }
+        public INavigationParameter NavigationParameter { get; set; }
     }
 }

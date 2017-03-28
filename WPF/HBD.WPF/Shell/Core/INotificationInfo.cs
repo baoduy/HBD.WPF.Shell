@@ -30,6 +30,6 @@ namespace HBD.WPF.Shell.Core
         /// </summary>
         bool IsKeepInCentral { get; set; }
 
-        IList<INavigationParameter> NavigationsParameters { get; }
+        INavigationParameter NavigationParameter { get; set; }
     }
 }

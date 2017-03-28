@@ -37,9 +37,9 @@ namespace HBD.WPF.Shell.Services
             => RegionManager.RequestNavigate(RegionNames.TitleRegion, typeof(IShellTitleView).FullName, new NavigationParameters { { NavigaParameters.Title, title } });
 
         public virtual void LoadView([NotNull]IViewInfo viewInfo)
-            => RequestNavigate(new NavigationRegionParameter(DefaultRegionName, viewInfo.ViewName, viewInfo.ViewType));
+            => RequestNavigate(new RegionNavigationParameter(DefaultRegionName, viewInfo.ViewName, viewInfo.ViewType));
 
-        public virtual void RequestNavigate([NotNull]NavigationRegionParameter command)
+        public virtual void RequestNavigate([NotNull]RegionNavigationParameter command)
         {
             if (command.RegionName.IsNullOrEmpty())
                 command.RegionName = this.DefaultRegionName;

@@ -103,7 +103,7 @@ namespace HBD.WPF.Shell.UI.ViewModels
                 var e = new NotificationEventArgs(obj.CastAs<INotificationInfo>());
                 ItemClick?.Invoke(this, e);
                 if (e.Handled) return;
-                NavigationExecuter.Execute(e.NotificationInfo.NavigationsParameters, DefaultNavigationCallback);
+                NavigationExecuter.Execute(e.NotificationInfo.NavigationParameter, DefaultNavigationCallback);
             }
             finally
             {

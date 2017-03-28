@@ -2,7 +2,6 @@
 
 using System;
 using System.ComponentModel.Composition;
-using System.Windows;
 using System.Windows.Input;
 using HBD.WPF;
 using HBD.WPF.Core;
@@ -10,7 +9,8 @@ using HBD.WPF.Shell.Core;
 using HBD.WPF.Shell.Navigation;
 using HBD.WPF.Shell.ViewModels;
 using Microsoft.Expression.Interactivity.Core;
-
+using HBD.WPF.Shell;
+using System.Windows.Media;
 #endregion
 
 namespace WPF.Demo.Module
@@ -61,7 +61,7 @@ namespace WPF.Demo.Module
                 n.IconType = NotificationIconType.Alert;
                 n.IsKeepInCentral = true;
                 n.CreatedDate = DateTime.Today.AddDays(-2);
-                //n.AddCommandNavigate(NotifyClicked);
+                n.For(NotifyClicked);
                 n.GroupTitle = "A";
             });
 
@@ -72,14 +72,19 @@ namespace WPF.Demo.Module
                 n.Icon = "pack://application:,,,/WPF.Demo.Module;component/Resources/Icons/pin_blue.png";
                 n.IsKeepInCentral = true;
                 n.CreatedDate = DateTime.Today.AddDays(-12);
-                //n.AddCommandNavigate(NotifyClicked);
+                n.For(NotifyClicked);
                 n.GroupTitle = "B";
             });
 
-            StatusService.SetStatus("Hello From Demo");
+            StatusService.SetStatus("Hello From Demo", Colors.Yellow);
         }
 
-        private void NotifyClicked() => MessageBox.Show("Notification Clicked");
+        private void NotifyClicked()
+        {
+            this.MessageBoxService.Info(this, "This is a Information box.", "Information",
+                (rs1) => this.MessageBoxService.Alert(this, "This is a Alert box.","Alert",
+                (rs2) =>this.MessageBoxService.Confirm(this, "this is Confirmation box.")));
+        }
 
         protected override void SetViewTitle(out string viewTitle, out string viewHeader)
         {

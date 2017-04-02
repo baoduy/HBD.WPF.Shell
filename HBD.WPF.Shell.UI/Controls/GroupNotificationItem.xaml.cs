@@ -66,15 +66,7 @@ namespace HBD.WPF.Shell.UI.Controls
                 peer?.RaiseAutomationEvent(AutomationEvents.InvokePatternOnInvoked);
             }
 
-            try
-            {
-                RaiseCloseEvent();
-            }
-            finally
-            {
-                //if (this.CloseCommand != null && this.CloseCommand.CanExecute(this))
-                //    this.CloseCommand.Execute(this);
-            }
+            RaiseCloseEvent();
         }
     }
 }

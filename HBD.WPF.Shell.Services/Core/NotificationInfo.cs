@@ -1,7 +1,6 @@
 ﻿#region
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using HBD.Framework.Core;
@@ -61,7 +60,7 @@ namespace HBD.WPF.Shell.Services.Core
                     case NotificationIconType.Alert:
                         return ResourceKeys.GetAppResource(ResourceKeys.AlertIcon);
 
-                    case NotificationIconType.Custom:
+                    //case NotificationIconType.Custom:
                     default:
                         return base.Icon;
                 }

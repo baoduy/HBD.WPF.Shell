@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 using HBD.Framework.Attributes;
@@ -118,7 +117,7 @@ namespace HBD.WPF.Shell.Regions
         /// </returns>
         protected virtual string GetContractFromNavigationContext(NavigationContext navigationContext)
         {
-            if (navigationContext == null) throw new ArgumentNullException("navigationContext");
+            if (navigationContext == null) throw new ArgumentNullException(nameof(navigationContext));
 
             var candidateTargetContract = UriParsingHelper.GetAbsolutePath(navigationContext.Uri);
             candidateTargetContract = candidateTargetContract.TrimStart('/');
@@ -135,7 +134,7 @@ namespace HBD.WPF.Shell.Regions
         /// <returns>An enumerable of candidate objects from the <see cref="IRegion" /></returns>
         protected virtual IEnumerable<object> GetCandidatesFromRegion(IRegion region, string candidateNavigationContract)
         {
-            if (region == null) throw new ArgumentNullException("region");
+            if (region == null) throw new ArgumentNullException(nameof(region));
             return region.Views.Where(v =>
                 string.Equals(v.GetType().Name, candidateNavigationContract, StringComparison.Ordinal) ||
                 string.Equals(v.GetType().FullName, candidateNavigationContract, StringComparison.Ordinal));

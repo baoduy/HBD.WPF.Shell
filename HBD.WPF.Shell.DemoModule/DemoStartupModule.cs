@@ -6,8 +6,8 @@ using HBD.Mef.Shell;
 using HBD.Mef.Shell.Navigation;
 using HBD.Mef.Shell.Services;
 using HBD.WPF;
+using HBD.WPF.Shell;
 using HBD.WPF.Shell.Modularity;
-using HBD.WPF.Shell.Navigation;
 using Prism.Mef.Modularity;
 using Prism.Modularity;
 

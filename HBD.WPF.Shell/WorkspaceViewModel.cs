@@ -92,7 +92,7 @@ namespace HBD.WPF.Shell
         {
             try
             {
-                this.ShellRegionNavigationService.LoadShellViews();
+                ShellRegionNavigationService.LoadShellViews();
             }
             catch (Exception ex)
             {

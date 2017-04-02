@@ -38,7 +38,7 @@ namespace HBD.WPF.Shell.Services
                     p.Buttons = DialogButtons.YesNo;
                     break;
 
-                case MessageIconType.Custom:
+                //case MessageIconType.Custom:
                 default:
                     throw new ArgumentOutOfRangeException(nameof(iconType), iconType, null);
             }

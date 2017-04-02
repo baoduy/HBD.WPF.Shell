@@ -166,7 +166,7 @@ namespace HBD.WPF.Windows
                     Left = rect.Left + (rect.Width - RenderSize.Width)/2;
                     break;
 
-                case NotificationPosition.TopRight:
+                //case NotificationPosition.TopRight:
                 default:
                     Top = rect.Top;
                     Left = rect.Width + rect.Left - ex - RenderSize.Width;

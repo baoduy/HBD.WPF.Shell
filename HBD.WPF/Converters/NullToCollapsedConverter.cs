@@ -19,6 +19,6 @@ namespace HBD.WPF.Converters
             => value.IsNull() ? Visibility.Collapsed : Visibility.Visible;
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => value is Visibility && (Visibility) value == Visibility.Visible ? true : false;
+            => value is Visibility && (Visibility) value == Visibility.Visible;
     }
 }

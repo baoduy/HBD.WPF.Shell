@@ -3,14 +3,15 @@
 using System;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
+using System.Windows.Media;
 using HBD.WPF;
 using HBD.WPF.Core;
+using HBD.WPF.Shell;
 using HBD.WPF.Shell.Core;
 using HBD.WPF.Shell.Navigation;
 using HBD.WPF.Shell.ViewModels;
 using Microsoft.Expression.Interactivity.Core;
-using HBD.WPF.Shell;
-using System.Windows.Media;
+
 #endregion
 
 namespace WPF.Demo.Module
@@ -81,9 +82,9 @@ namespace WPF.Demo.Module
 
         private void NotifyClicked()
         {
-            this.MessageBoxService.Info(this, "This is a Information box.", "Information",
-                (rs1) => this.MessageBoxService.Alert(this, "This is a Alert box.","Alert",
-                (rs2) =>this.MessageBoxService.Confirm(this, "this is Confirmation box.")));
+            MessageBoxService.Info(this, "This is a Information box.", "Information",
+                rs1 => MessageBoxService.Alert(this, "This is a Alert box.","Alert",
+                rs2 =>MessageBoxService.Confirm(this, "this is Confirmation box.")));
         }
 
         protected override void SetViewTitle(out string viewTitle, out string viewHeader)
@@ -111,7 +112,7 @@ namespace WPF.Demo.Module
             {
                 p.Title = "AA";
                 p.DialogType = DialogType.Dialog;
-            }, null);
+            });
             //this.SetBusy(false);
         }
 

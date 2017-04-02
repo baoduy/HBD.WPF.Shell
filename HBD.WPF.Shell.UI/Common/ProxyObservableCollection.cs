@@ -28,8 +28,9 @@ namespace HBD.WPF.Shell.UI.Common
             Guard.ArgumentIsNotNull(condition, nameof(condition));
 
             _condition = condition;
-            if (internaCollection is INotifyCollectionChanged)
-                ((INotifyCollectionChanged) internaCollection).CollectionChanged += _internaCollection_CollectionChanged;
+            var changed = internaCollection as INotifyCollectionChanged;
+            if (changed != null)
+                changed.CollectionChanged += _internaCollection_CollectionChanged;
             else throw new ArgumentException($"{nameof(internaCollection)} must be a INotifyCollectionChanged");
         }
 

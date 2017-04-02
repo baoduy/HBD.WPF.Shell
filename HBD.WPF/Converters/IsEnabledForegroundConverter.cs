@@ -36,6 +36,6 @@ namespace HBD.WPF.Converters
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => value == _enabledBrush;
+            => Equals(value, _enabledBrush);
     }
 }

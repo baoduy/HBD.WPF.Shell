@@ -18,11 +18,11 @@
     <language>en-US</language>
     <dependencies>
       <group targetFramework=".NETFramework4.6.1">
-        <dependency id="HBD.Mef" version="1.0.4" />
-        <dependency id="HBD.Framework" version="1.0.5" />
-        <dependency id="Prism.Core" version="6.2.0" />
-        <dependency id="Prism.Mef" version="6.2.0" />
-        <dependency id="Prism.Wpf" version="6.2.0" />
+        <dependency id="HBD.Mef" version="1.0.5" />
+        <dependency id="HBD.Framework" version="1.0.6" />
+        <dependency id="Prism.Core" version="6.3.0" />
+        <dependency id="Prism.Mef" version="6.3.0" />
+        <dependency id="Prism.Wpf" version="6.3.0" />
       </group>
     </dependencies>
   </metadata>

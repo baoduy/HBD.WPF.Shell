@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #endregion
 
-namespace WPF.Shell.UI.Common.Tests
+namespace WPF.Shell.UITests.Common
 {
     [TestClass]
     public class LeftRightMenuCollectionTests

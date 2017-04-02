@@ -2,12 +2,11 @@
 
 using System;
 using System.ComponentModel.Composition;
+using HBD.Framework.Attributes;
 using HBD.Mef.Shell.Navigation;
 using HBD.WPF.Shell.Navigation;
 using HBD.WPF.Shell.Regions;
 using Prism.Regions;
-using HBD.Framework.Attributes;
-using HBD.Framework.Core;
 
 #endregion
 
@@ -24,12 +23,13 @@ namespace HBD.WPF.Shell.Services
         {
             if (parameter == null) return;
 
-            if (parameter is CommandNavigationParameter)
-                this.ExecuteCommand((CommandNavigationParameter)parameter);
+            var command = parameter as CommandNavigationParameter;
+            if (command != null)
+                ExecuteCommand(command);
             else if (parameter is RegionNavigationParameter)
-                this.ExecuteRegion((RegionNavigationParameter)parameter);
+                ExecuteRegion((RegionNavigationParameter)parameter);
             else if (parameter is ActionNavigationParameter)
-                this.ExecuteAction((ActionNavigationParameter)parameter);
+                ExecuteAction((ActionNavigationParameter)parameter);
             else throw new NotSupportedException(parameter.GetType().FullName);
         }
 

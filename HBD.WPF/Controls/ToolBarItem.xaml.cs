@@ -2,7 +2,6 @@
 
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
 
 #endregion
 
@@ -11,7 +10,7 @@ namespace HBD.WPF.Controls
     /// <summary>
     ///     Interaction logic for ToolbarItem.xaml
     /// </summary>
-    public partial class ToolBarItem : Button
+    public partial class ToolBarItem
     {
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string),
             typeof(ToolBarItem), new FrameworkPropertyMetadata("ToolBarItem"));

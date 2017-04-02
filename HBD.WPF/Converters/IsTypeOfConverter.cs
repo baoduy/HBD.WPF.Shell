@@ -16,6 +16,7 @@ namespace HBD.WPF.Converters
             Guard.ArgumentIsNotNull(parameter, nameof(parameter));
 
             var valueType = value.GetType();
+            // ReSharper disable once PossibleNullReferenceException
             var checkType = parameter as Type ?? parameter.GetType();
 
             return checkType.IsAssignableFrom(valueType);

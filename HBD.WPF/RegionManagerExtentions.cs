@@ -1,13 +1,13 @@
 ﻿#region
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using HBD.Framework;
 using HBD.Framework.Attributes;
 using HBD.Framework.Core;
 using HBD.WPF.Shell.Core;
 using Prism.Regions;
-using HBD.Framework;
-using System.Collections.Generic;
 
 #endregion
 

@@ -7,6 +7,7 @@ using System.Windows.Data;
 using HBD.Mef.Shell.Core;
 using HBD.Mef.Shell.Navigation;
 using Microsoft.Practices.ServiceLocation;
+
 // ReSharper disable TryCastAlwaysSucceeds
 // ReSharper disable CanBeReplacedWithTryCastAndCheckForNull
 

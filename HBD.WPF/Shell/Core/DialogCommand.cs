@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace HBD.WPF.Shell.Core
 {
-    [DebuggerDisplay("Text = {Text}")]
+    [DebuggerDisplay("Text = {" + nameof(Text) + "}")]
     public sealed class DialogCommand
     {
         internal DialogCommand()

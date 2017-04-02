@@ -17,7 +17,7 @@ namespace HBD.WPF.Converters
         {
             if (value == null) return null;
 
-            double d = 0;
+            double d;
             return double.TryParse(value.ToString(), out d) ? System.Convert.ChangeType(d*-1, targetType) : value;
         }
 

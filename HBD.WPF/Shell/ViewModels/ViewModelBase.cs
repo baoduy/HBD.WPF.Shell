@@ -17,7 +17,6 @@ using HBD.WPF.Shell.Regions;
 using HBD.WPF.Shell.Services;
 using Microsoft.Expression.Interactivity.Core;
 using Microsoft.Practices.ServiceLocation;
-using Prism.Logging;
 using Prism.Regions;
 
 #endregion
@@ -44,7 +43,7 @@ namespace HBD.WPF.Shell.ViewModels
         public IServiceLocator Container { protected get; set; }
 
         [Import(AllowDefault = true, AllowRecomposition = true)]
-        public ILoggerFacade Logger { protected get; set; }
+        public ILogger Logger { protected get; set; }
 
         [Import(AllowDefault = true, AllowRecomposition = true)]
         public IDialogService DialogService { protected get; set; }
@@ -138,7 +137,7 @@ namespace HBD.WPF.Shell.ViewModels
         protected void ShowBusyAndTrace(string message)
         {
             this.ShowBusy(message);
-            Logger.Log(message, Category.Info, Priority.None);
+            Logger.Info(message);
         }
 
         #endregion IBusyIndicator
@@ -344,7 +343,7 @@ namespace HBD.WPF.Shell.ViewModels
         public virtual void Close()
         {
             IsActive = false;
-            this.RegionNavigationService.Close(this);
+            RegionNavigationService.Close(this);
             //if (!RegionInfo.IsEmpty() && RegionInfo.RegionName.IsNotNullOrEmpty())
             //    RegionManager?.Regions[RegionInfo.RegionName].Deactivate(RegionInfo.View);
         }

@@ -3,19 +3,19 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
+using HBD.Framework;
+using HBD.Framework.Attributes;
+using HBD.Framework.Exceptions;
 using HBD.Mef.Shell.Navigation;
 using HBD.Mef.Shell.Views;
 using HBD.WPF.Shell.Infos;
 using HBD.WPF.Shell.Navigation;
 using HBD.WPF.Shell.Regions;
+using HBD.WPF.Shell.ViewModels;
 using HBD.WPF.Shell.Views;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
-using HBD.Framework;
-using System.Linq;
-using HBD.Framework.Attributes;
-using HBD.Framework.Exceptions;
-using HBD.WPF.Shell.ViewModels;
 
 #endregion
 
@@ -42,22 +42,22 @@ namespace HBD.WPF.Shell.Services
         public virtual void RequestNavigate([NotNull]RegionNavigationParameter command)
         {
             if (command.RegionName.IsNullOrEmpty())
-                command.RegionName = this.DefaultRegionName;
+                command.RegionName = DefaultRegionName;
 
             ValiddateRegion(command.RegionName);
 
             var view = ServiceLocator.GetInstance(command.ViewType, command.ViewName);
 
-            if (this.RegionManager.Regions[command.RegionName].Views.Any(v => v == view))
-                this.RegionManager.Regions[command.RegionName].Activate(view);
-            else this.RegionManager.AddToRegion(command.RegionName, view);
+            if (RegionManager.Regions[command.RegionName].Views.Any(v => v == view))
+                RegionManager.Regions[command.RegionName].Activate(view);
+            else RegionManager.AddToRegion(command.RegionName, view);
 
 
             if (!command.RegionName.EqualsIgnoreCase(RegionNames.TabRegion)) return;
             //Set the view title when added view to region target.
             var title = view.CastAs<IViewTitle>();
             if (title != null)
-                this.SetViewTitle(title.ViewHeader);
+                SetViewTitle(title.ViewHeader);
         }
 
         public virtual void RequestNavigate([NotNull]string regionName, IDictionary<string, object> parameters = null)
@@ -70,7 +70,7 @@ namespace HBD.WPF.Shell.Services
         {
             var info = RegionManager.FindRegionInfoItem(viewType.FullName);
             if (info.IsEmpty())
-                info.RegionName = this.DefaultRegionName;
+                info.RegionName = DefaultRegionName;
 
             RegionManager.RequestNavigate(info.RegionName, viewType.FullName, parameters.ToParameters());
         }
@@ -82,7 +82,7 @@ namespace HBD.WPF.Shell.Services
         {
             if (regionName.AnyOfIgnoreCase(RegionNames.StatusRegion, RegionNames.MenuRegion,
                 RegionNames.TitleRegion, RegionNames.MainRegion)
-                && this.RegionManager.Regions[regionName].Views.Any())
+                && RegionManager.Regions[regionName].Views.Any())
                 throw new InvalidException($"The region {regionName} is not allow to add new or replace the existing View.");
         }
 
@@ -96,10 +96,10 @@ namespace HBD.WPF.Shell.Services
 
         public void Close([NotNull]object viewOrViewModel)
         {
-            var regionInfo = this.RegionManager.FindRegionInfoItem(viewOrViewModel, RegionNames.TabRegion, RegionNames.LeftRegion, RegionNames.RightRegion);
+            var regionInfo = RegionManager.FindRegionInfoItem(viewOrViewModel, RegionNames.TabRegion, RegionNames.LeftRegion, RegionNames.RightRegion);
             if (regionInfo.IsEmpty()) return;
 
-            var region = this.RegionManager.Regions[regionInfo.RegionName];
+            var region = RegionManager.Regions[regionInfo.RegionName];
             if (!region.Views.Any()) return;
 
             if (region is AllActiveRegion)

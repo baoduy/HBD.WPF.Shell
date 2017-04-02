@@ -32,7 +32,7 @@ namespace HBD.WPF.Shell.Services
         protected virtual IDialogWindow CreateWindow(object parentViewModel, FrameworkElement contentView,
             DialogType type)
         {
-            IDialogWindow win = null;
+            IDialogWindow win;
             switch (type)
             {
                 case DialogType.Dialog:
@@ -121,7 +121,7 @@ namespace HBD.WPF.Shell.Services
 
         protected virtual void RemoveWindowFromCache(object parentViewModel)
         {
-            Window win = null;
+            Window win;
             OpenedWindowCache.TryRemove(parentViewModel, out win);
         }
 
@@ -148,7 +148,7 @@ namespace HBD.WPF.Shell.Services
         {
             if (!OpenedChildWindowCache.ContainsKey(parentViewModel)) return false;
 
-            ModelWindow win = null;
+            ModelWindow win;
 
             if (OpenedChildWindowCache.TryGetValue(parentViewModel, out win))
                 return true;
@@ -217,7 +217,7 @@ namespace HBD.WPF.Shell.Services
                         throw new Exception("Model is showing.");
                     return CreateWindow(parentViewModel, view, DialogType.Model);
                 }
-                case DialogType.Dialog:
+                //case DialogType.Dialog:
                 default:
                     return CreateWindow(parentViewModel, view, DialogType.Dialog);
             }
@@ -327,7 +327,7 @@ namespace HBD.WPF.Shell.Services
 
         private static FileDialog CreateNewFileDialog(bool isSaveDialog)
         {
-            FileDialog file = null;
+            FileDialog file;
             if (isSaveDialog)
                 file = new SaveFileDialog {Title = "Save File Dialog"};
             else

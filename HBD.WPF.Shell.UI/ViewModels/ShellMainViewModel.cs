@@ -145,7 +145,7 @@ namespace HBD.WPF.Shell.UI.ViewModels
         {
             var view = viewObj as FrameworkElement;
             if (view == null) return;
-            this.RegionNavigationService.Close(view);
+            RegionNavigationService.Close(view);
 
             //Get current index of view and selected status
             //var isSelected = ReferenceEquals(SelectedElement, view);

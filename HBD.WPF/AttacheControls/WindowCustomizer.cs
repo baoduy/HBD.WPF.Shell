@@ -1,7 +1,5 @@
 ﻿#region
 
-using System;
-using System.Runtime.InteropServices;
 using System.Windows;
 using HBD.WPF.Common;
 

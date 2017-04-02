@@ -1,6 +1,6 @@
-﻿using HBD.Mef.Shell.Navigation;
+﻿using System;
+using HBD.Mef.Shell.Navigation;
 using HBD.WPF.Shell.Core;
-using System;
 
 namespace HBD.WPF.Shell
 {
@@ -24,7 +24,7 @@ namespace HBD.WPF.Shell
         public static T For<T>(this T @this, Type viewType) where T : INotificationInfo
            => @this.For(new ViewInfo(viewType));
 
-        public static T For<T, ViewType>(this T @this) where T : INotificationInfo
-          => @this.For(typeof(ViewType));
+        public static T For<T, TViewType>(this T @this) where T : INotificationInfo
+          => @this.For(typeof(TViewType));
     }
 }

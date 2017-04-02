@@ -18,7 +18,7 @@ namespace HBD.WPF.Shell.Regions
 
         protected override void Adapt(IRegion region, TabControl regionTarget)
         {
-            this.RegionTarget = regionTarget;
+            RegionTarget = regionTarget;
 
             region.Views.CollectionChanged += (s, e) =>
             {

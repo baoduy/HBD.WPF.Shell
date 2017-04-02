@@ -4,15 +4,16 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using HBD.Framework;
+using HBD.Mef.Logging;
 using HBD.Mef.Shell.Modularity;
 using HBD.Mef.Shell.Navigation;
-using HBD.Mef.Logging;
+using Prism.Modularity;
 
 #endregion
 
 namespace HBD.WPF.Shell.Modularity
 {
-    public abstract class WpfModuleBase : ShellModuleBase
+    public abstract class WpfModuleBase : ShellModuleBase, IModule
     {
         protected override IEnumerable<IViewInfo> GetStartUpViewTypes()
         {

@@ -1,7 +1,6 @@
 ﻿#region
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using HBD.Mef.Shell.Navigation;
 

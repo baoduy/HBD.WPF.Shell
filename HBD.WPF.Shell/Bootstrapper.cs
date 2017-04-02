@@ -5,11 +5,13 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using HBD.Framework;
 using HBD.Mef.Logging;
 using HBD.WPF.Shell.Configuration;
 using HBD.WPF.Shell.Core;
+using HBD.WPF.Shell.Logging;
 using HBD.WPF.Shell.Regions;
 using HBD.WPF.Shell.Services;
 using Microsoft.Practices.ServiceLocation;
@@ -17,7 +19,6 @@ using Prism;
 using Prism.Logging;
 using Prism.Mef;
 using Prism.Regions;
-using System.Windows.Controls;
 
 #endregion
 
@@ -27,7 +28,7 @@ namespace HBD.WPF.Shell
     {
         private IWpfConfigManager ShellConfigManager { get; } = new WpfConfigManager();
 
-        protected override ILoggerFacade CreateLogger() => new Log4NetLogger();
+        protected override ILoggerFacade CreateLogger() => new WpfLogger();
 
         protected override void ConfigureAggregateCatalog()
         {
@@ -48,6 +49,7 @@ namespace HBD.WPF.Shell
             Container.ComposeExportedValue<IRegionNavigationContentLoader>(
                 new ScopedRegionNavigationContentLoader(Container.GetExportedValue<IServiceLocator>()));
 
+            Container.ComposeExportedValue(Logger as ILogger);
             Container.ComposeExportedValue(ShellConfigManager);
         }
 
@@ -113,13 +115,5 @@ namespace HBD.WPF.Shell
             (Logger as IDisposable)?.Dispose();
             Application.Current.Shutdown();
         }
-
-        /// <summary>
-        ///     Activate Main Window
-        /// </summary>
-        //protected override void InitializeModules()
-        //{
-        //    base.InitializeModules();
-        //}
     }
 }

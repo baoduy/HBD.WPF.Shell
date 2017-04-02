@@ -4,15 +4,15 @@
 
 #endregion
 
+using System;
+using System.Windows;
+using System.Windows.Input;
 using HBD.Framework.Core;
 using HBD.Mef.Shell.Navigation;
 using HBD.WPF.Shell.Navigation;
 using Microsoft.Expression.Interactivity.Core;
-using System;
-using System.Windows;
-using System.Windows.Input;
 
-namespace HBD.Mef.Shell
+namespace  HBD.WPF.Shell
 {
     public static class NavigationExtensions
     {
@@ -48,8 +48,8 @@ namespace HBD.Mef.Shell
         public static NavigationParameterCollector<INavigationInfo> ForRegion(this INavigationInfo @this, Type viewType)
            => @this.ForRegion(null, null, viewType);
 
-        public static NavigationParameterCollector<INavigationInfo> For<ViewType>(this INavigationInfo @this) where ViewType : UIElement
-          => @this.ForRegion(null, null, typeof(ViewType));
+        public static NavigationParameterCollector<INavigationInfo> For<TViewType>(this INavigationInfo @this) where TViewType : UIElement
+          => @this.ForRegion(null, null, typeof(TViewType));
 
         //public static T ForAction<T>(this T @this, Action action) where T : NavigationParameterCollection
         //{ }

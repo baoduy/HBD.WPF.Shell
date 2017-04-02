@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Threading;
 using HBD.Mef.Logging;
 using HBD.WPF.Shell.Services;
-using Prism.Logging;
 
 #endregion
 
@@ -22,7 +21,7 @@ namespace HBD.WPF.Shell
         public IMessageBoxService MessageBoxService { get; set; }
 
         [Import(AllowDefault = true, AllowRecomposition = true)]
-        public ILoggerFacade Logger { get; set; }
+        public ILogger Logger { get; set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -45,11 +44,11 @@ namespace HBD.WPF.Shell
             
             if (MessageBoxService == null)
             {
-                if (MessageBox.Show(Application.Current.MainWindow, message, title, MessageBoxButton.YesNo, MessageBoxImage.Question)
+                if (MessageBox.Show(Current.MainWindow, message, title, MessageBoxButton.YesNo, MessageBoxImage.Question)
                     != MessageBoxResult.Yes)
                     e.Cancel = true;
             }
-            else if (MessageBoxService.ConfirmDialog(App.Current.MainWindow, message, title).Result != MessageBoxResult.Yes)
+            else if (MessageBoxService.ConfirmDialog(Current.MainWindow, message, title).Result != MessageBoxResult.Yes)
             {
                 e.Cancel = true;
             }

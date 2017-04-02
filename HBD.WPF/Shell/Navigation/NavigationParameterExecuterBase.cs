@@ -3,9 +3,9 @@
 using System;
 using System.Collections.Generic;
 using HBD.Framework;
+using HBD.Framework.Attributes;
 using HBD.Mef.Shell.Navigation;
 using Prism.Regions;
-using HBD.Framework.Attributes;
 
 #endregion
 

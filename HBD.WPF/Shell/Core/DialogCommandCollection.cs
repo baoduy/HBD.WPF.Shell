@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace HBD.WPF.Shell.Core
 {
-    [DebuggerDisplay("Count = {Count}")]
+    [DebuggerDisplay("Count = {" + nameof(Count) + "}")]
     public sealed class DialogCommandCollection : IEnumerable<DialogCommand>
     {
         internal DialogCommandCollection()
